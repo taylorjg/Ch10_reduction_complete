@@ -1,4 +1,20 @@
 
+## UPDATE
+
+I recently found the following discussion on one of the Intel discussion forums:
+
+[Problems with reduction done in CPU](https://software.intel.com/en-us/forums/opencl/topic/558984)
+
+The key bit is as follows:
+
+> The problem is in the kernel code, at line 18:
+>
+>       data[get_group_id(0)] = partial_sums[0];
+>
+> Basically, this logic expects that work-groups are executed sequentially, but this is not the case (for CPU at least). What happens is that some work-group with a higher index might be executed earlier and so it rewrites the data that has not been processed yet by the lower index (say 0) work-group.
+>
+> One obvious solution would be to write temporary reduction sums to indexes above the current global size (of course allocating necessary amount of space first) and adjust offsets for each iteration of reduction.
+
 ## Description
 
 Recently, I have been following along with the code in Chapter 10 of _OpenCL in Action_ (sections 10.2 and 10.3).
