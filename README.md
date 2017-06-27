@@ -15,6 +15,8 @@ The key bit is as follows:
 >
 > One obvious solution would be to write temporary reduction sums to indexes above the current global size (of course allocating necessary amount of space first) and adjust offsets for each iteration of reduction.
 
+*A working version of the code in C++ can be found [here](https://github.com/taylorjg/ReductionCpp).*
+
 ## Description
 
 Recently, I have been following along with the code in Chapter 10 of _OpenCL in Action_ (sections 10.2 and 10.3).
